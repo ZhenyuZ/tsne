@@ -1,5 +1,6 @@
 library(data.table)
 library(ggplot2)
+library(umap)
 
 setwd("~/SCRATCH/tsne")
 # source("./tsne.util.r")
@@ -34,13 +35,11 @@ cnv <- pca.cnv$x[match(patients, patient.cnv), ]
 
 
 # merge all PCs 
-data <- cbind(rna, 
-							mirna[match(patients, patient.mirna), ], 
-							met[match(patients, patient.met), ], 
-							cnv[match(patients, patient.cnv), ])
-rownames(data) <- patients
-
-
+# data <- cbind(rna, 
+# 	mirna[match(patients, patient.mirna), ], 
+#	met[match(patients, patient.met), ], 
+#	cnv[match(patients, patient.cnv), ])
+# rownames(data) <- patients
 
 # in order to conbine PCs from different dataset, we need to scale the PCs
 # we will calculate sqrt(sum of sdev^2), and normalize PCs agaist this factor 
